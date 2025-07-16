@@ -17,9 +17,14 @@ app.post('/images/multi',upload.array('photos',10),(req,res)=>{
 // funcion para ver las imagenes
 
 function saveImage(file){
- const newPath=`uploads/${file.originalname}`;
- fs.renameSync(file.path,newPath)
- return newPath
+try {
+    const newPath = `uploads/${file.originalname}`;
+    fs.renameSync(file.path, newPath);
+    return newPath;
+  } catch (err) {
+    console.error('Error al guardar imagen:', err);
+    return null;
+  }
 }
 app.get("/", (req, res) => {
     console.log("correctamente")
