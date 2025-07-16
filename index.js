@@ -21,7 +21,11 @@ function saveImage(file){
  fs.renameSync(file.path,newPath)
  return newPath
 }
-
-app.listen(3000,()=>{
-    console.log("Servidor 3000")
+app.get("/", (req, res) => {
+    console.log("correctamente")
+  res.send("Servidor en Railway funcionando correctamente.");
+});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
